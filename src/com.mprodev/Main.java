@@ -1,8 +1,8 @@
 package com.mprodev;
 
-import com.company.dsalgo.easy.IntersectionOfTwoArrays;
-import com.company.dsalgo.easy.IntersectionOfTwoArraysII;
-import com.company.dsalgo.medium.*;
+import com.mprodev.easy.IntersectionOfTwoArrays;
+import com.mprodev.easy.IntersectionOfTwoArraysII;
+import com.mprodev.medium.*;
 
 import java.util.Arrays;
 import java.util.List;
