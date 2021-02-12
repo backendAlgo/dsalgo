@@ -43,12 +43,36 @@ public class LongestWorkInDictionaryThroughDeleting {
         }
         return true;
     }
+    //another way suggested by leetcode no need of hashmap
+    private boolean isPossible(String s, String word) {
+        int j = 0;
+        for (int i = 0; i < s.length() && j < word.length(); i++) {
+            if (s.charAt(i) == word.charAt(j)) {
+                j++;
+            }
+        }
+        return j == word.length();
+    }
+    public String findLongestWordLeetcode(String s, List<String> d) {
+        String ans = "";
+        for (String word : d) {
+            if (isPossible(s, word)) {
+                if (ans.length() == word.length()) {
+                    if (ans.length() == 0 || ans.compareTo(word) > 0)
+                        ans = word;
+                } else if (ans.length() < word.length())
+                    ans = word;
+            }
+        }
+        return ans;
+    }
 
     public static void main(String[] args) {
-        System.out.println(
-                new LongestWorkInDictionaryThroughDeleting().findLongestWord(
+        System.out.println("ale".compareTo("apple"));
+                System.out.println(
+                new LongestWorkInDictionaryThroughDeleting().findLongestWordLeetcode(
                         "abpcplea",
-                        new LinkedList<>(List.of("a","b","c"))
+                        new LinkedList<>(List.of("ale","apple","monkey","plea"))
                 )
         );
     }

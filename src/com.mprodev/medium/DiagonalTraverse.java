@@ -2,22 +2,37 @@ package com.mprodev.medium;
 /* Mirshod created on 2/4/2021 */
 
 
-public class DiagonalTraverse {
-    public int[] findDiagonalOrder(int[][] matrix) {
-        int i = 0;
-        int j = 0;
-        int row = matrix.length;
-        int column = matrix[0].length;
-        int[] ans = new int[row * column];
-        int index = 0;
-        while (i != matrix[row-1][column-1]) {
-            ans[index++] = matrix[i][j];
-            if (i == 0) j++;
-            else if (j == 0) i++;
-            else {
+import java.util.LinkedList;
+import java.util.List;
 
+public class DiagonalTraverse {
+    private interface Change {
+        void change(int i, int j);
+    }
+    public int[] findDiagonalOrder(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[] ans = new int[m * n];
+        int k = 0;
+        int i = 0, j = 0;
+        boolean toggle = true;
+        boolean toBottom = true;
+        //for half of the matrix
+        while(i != m -1  && j != n - 1) {
+            if (i == m - 1 || j == n - 1) {
+                toggle = false;
+            }
+            if (toggle) {
+
+                if (toBottom) {
+
+                }
             }
         }
+
         return ans;
+    }
+    private static void toRight(Integer i, Integer j) {
+        j = j + 1;
     }
 }

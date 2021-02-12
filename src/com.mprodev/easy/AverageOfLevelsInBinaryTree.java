@@ -27,7 +27,7 @@ public class AverageOfLevelsInBinaryTree {
     }
     public List<Double> averageOfLevelsLeetcode(TreeNode root) {
         List<Double> ans = new LinkedList<>();
-        if (root == null) return ans;
+            if (root == null) return ans;
         Queue<TreeNode> q = new ArrayDeque<>();
         q.add(root);
         int count = 1;
