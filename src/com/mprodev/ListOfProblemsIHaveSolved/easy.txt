@@ -1,0 +1,68 @@
+1)**C129B**
+https://codeforces.com/problemset/problem/129/B
+Input
+The first line contains two integers n and m — the initial number of students and laces (). The students are numbered from 1 to n, and the laces are numbered from 1 to m. Next m lines each contain two integers a and b — the numbers of students tied by the i-th lace (1 ≤ a, b ≤ n, a ≠ b). It is guaranteed that no two students are tied with more than one lace. No lace ties a student to himself.
+
+Output
+Print the single number — the number of groups of students that will be kicked out from the club.
+
+Examples
+input
+3 3
+1 2
+2 3
+3 1
+output
+0
+
+input
+6 3
+1 2
+2 3
+3 4
+output
+2
+
+input
+6 5
+1 4
+2 4
+3 4
+5 4
+6 4
+output
+1
+2)**Next Greater Element I**
+You are given two integer arrays nums1 and nums2 both of unique elements, where nums1 is a subset of nums2.
+
+Find all the next greater numbers for nums1's elements in the corresponding places of nums2.
+
+The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, return -1 for this number.
+
+
+
+Example 1:
+
+Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+Output: [-1,3,-1]
+Explanation:
+For number 4 in the first array, you cannot find the next greater number for it in the second array, so output -1.
+For number 1 in the first array, the next greater number for it in the second array is 3.
+For number 2 in the first array, there is no next greater number for it in the second array, so output -1.
+Example 2:
+
+Input: nums1 = [2,4], nums2 = [1,2,3,4]
+Output: [3,-1]
+Explanation:
+For number 2 in the first array, the next greater number for it in the second array is 3.
+For number 4 in the first array, there is no next greater number for it in the second array, so output -1.
+3)****
+4)****
+5)****
+6)****
+7)****
+8)****
+9)****
+10)****
+
+

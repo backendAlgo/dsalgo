@@ -5,11 +5,12 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Integer a = 18;
-        Integer b = 10;
-        add(a,b);
-        System.out.println(a + " " + b);
-
+        int i = 0;
+        int a;
+        while (true) {
+            if (i++==4) break;
+            a = 45;
+        }
     }
     private static void add(Integer a, Integer b) {
         a = a + b;
