@@ -12,13 +12,35 @@ import java.util.StringTokenizer;
 */
 
 public class C {
-
+	//solution 1) more easy way using just thinking
 	public static void main(String[] args) {
 		FastScanner fs=new FastScanner();
 		int T=fs.nextInt();
 		for (int tt=0; tt<T; tt++) {
-			
+			int a = fs.nextInt(),
+					b = fs.nextInt(),
+					k = fs.nextInt();
+			int[] boyP = new int[k], girlP = new int[k];
+			for (int i = 0; i < k; i++) {
+				boyP[i] = fs.nextInt()-1;
+			}
+			for (int i = 0; i < k; i++) {
+				girlP[i] = fs.nextInt()-1;
+			}
+			int[] boyOutDegree = new int[a], girOutDegree = new int[b];
+			for (int i = 0; i < k; i++) {
+				boyOutDegree[boyP[i]]++;
+				girOutDegree[girlP[i]]++;
+			}
+			long ans = 0;
+			for (int i = 0; i < k; i++) {
+				ans += (k - 1) - (boyOutDegree[boyP[i]] - 1)
+						- (girOutDegree[girlP[i]] - 1);
+			}
+			System.out.println(ans / 2);
 		}
+
+		//solution 2) using purely combinatorics look at the comments
 
 	}
 
