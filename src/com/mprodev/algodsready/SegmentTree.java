@@ -1,5 +1,6 @@
 package com.mprodev.algodsready;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /* Mirshod created on 2/28/2021 */
@@ -15,7 +16,8 @@ public class SegmentTree {
             SegTree st = new SegTree(0, n - 1, a);
             SegTreeArr sarr = new SegTreeArr(a);
             SegTreeBottomUp segTreeBottomUp = new SegTreeBottomUp(a);
-
+            SegmentTreeErrichto segmentTreeErrichto = new SegmentTreeErrichto(n, a);
+            SQRTDecomposition sqrtDecomposition = new SQRTDecomposition(a);
             // answer bunch of queries
 
             int nQueries = 100;
@@ -29,9 +31,12 @@ public class SegmentTree {
                     int stAns = st.rangeSum(l, r);
                     int stArrAns = sarr.rangeSum(1, 0, n - 1, l, r);
                     int stBottomUp = segTreeBottomUp.sumRange(l, r);
+                    int stErrichto = segmentTreeErrichto.sumRange(1, 0, segmentTreeErrichto.n - 1, l, r);
+                    int sqrtAns = sqrtDecomposition.sumRange(l, r);
                     if (stAns != ans) throw new RuntimeException("Segment tree is wrong");
                     if (stAns != stArrAns) throw new RuntimeException("Segment Array Tree is wrong");
-                    if (stBottomUp != stAns) throw new RuntimeException("Segment Tree Bottom up wrong");
+                    if (stAns != stBottomUp) throw new RuntimeException("Segment Tree Bottom up wrong");
+                    if (stAns != stErrichto) throw new RuntimeException("Segment Tree Errichto wrong");
                 } else {
                     // point update array
                     int index = random.nextInt(n);
@@ -40,6 +45,8 @@ public class SegmentTree {
                     st.pointUpdate(index, newValue);
                     sarr.update(1, 0, n - 1, index, newValue);
                     segTreeBottomUp.update(index, newValue);
+                    segmentTreeErrichto.update(index, newValue);
+                    sqrtDecomposition.update(index, newValue);
                 }
             }
         }
@@ -140,7 +147,7 @@ public class SegmentTree {
 
     //segment tree using bottom up approach with 2*n space
     static class SegTreeBottomUp {
-        private int tree[];
+        private int[] tree;
         int n;
 
         public SegTreeBottomUp(int[] arr) {
@@ -195,6 +202,46 @@ public class SegmentTree {
                 r /= 2;
             }
             return sum;
+        }
+    }
+
+    static class SegmentTreeErrichto {
+        private final int[] tree;
+        private final int n;
+
+        public SegmentTreeErrichto(int n, int[] arr) {
+            while (Integer.bitCount(n) != 1) {
+                n++;
+            }
+            tree = new int[2 * n];
+            this.n = n;
+            buildTree(arr);
+        }
+
+        public void buildTree(int[] arr) {
+            for (int i = 0; i < arr.length; i++) {
+                tree[n + i] = arr[i];
+            }
+            for (int i = n - 1; i > 0; i--) {
+                tree[i] = tree[2 * i] + tree[2 * i + 1];
+            }
+        }
+
+        public int sumRange(int node, int nodeLow, int nodeHigh, int queryLow, int queryHigh) {
+            if (queryLow <= nodeLow && nodeHigh <= queryHigh)
+                return tree[node];
+            if (nodeHigh < queryLow || nodeLow > queryHigh)
+                return 0;
+            int lastInLeft = (nodeLow + nodeHigh) / 2;
+            return sumRange(2 * node, nodeLow, lastInLeft, queryLow, queryHigh) +
+                    sumRange(2 * node + 1, lastInLeft + 1, nodeHigh, queryLow, queryHigh);
+        }
+
+        public void update(int i, int v) {
+            tree[n + i] = v;
+            for (int j = (n + i) / 2; j >= 1; j /= 2) {
+                tree[j] = tree[2 * j] + tree[2 * j + 1];
+            }
         }
     }
 }
